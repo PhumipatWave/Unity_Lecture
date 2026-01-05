@@ -1,19 +1,39 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalPool : MonoBehaviour
 {
+    #region Singleton
+    public static NormalPool instance {  get; private set; }
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
+
     public GameObject bulletPrefab;
 
     [SerializeField] private int poolSize = 10;
+
+    public List<GameObject> PrefabPool 
+    {
+        get { return prefabPool; }
+        set { prefabPool = value; }
+    }
     private List<GameObject> prefabPool = new List<GameObject>();
 
     private void Start()
     {
         for (int i = 0; i < poolSize; i++)
         {
-            CreateNewPrefab(bulletPrefab, prefabPool);
+            CreateNewPrefab(bulletPrefab, PrefabPool);
         }
     }
 
@@ -21,7 +41,7 @@ public class NormalPool : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnPrefab(bulletPrefab, prefabPool);
+            SpawnPrefab(bulletPrefab, PrefabPool);
         }
     }
 
@@ -30,13 +50,15 @@ public class NormalPool : MonoBehaviour
         var prefab = Instantiate(obj, Vector2.zero, Quaternion.identity);
         prefab.SetActive(false);
         pool.Add(prefab);
+
+        Debug.Log($"Add new prefab {obj} to {pool}");
     }
 
     public GameObject SpawnPrefab(GameObject obj, List<GameObject> pool)
     {
         if (pool.Count == 0)
         {
-            CreateNewPrefab(bulletPrefab, prefabPool);
+            CreateNewPrefab(bulletPrefab, PrefabPool);
         }
 
         int random = Random.Range(0, pool.Count);
@@ -44,6 +66,9 @@ public class NormalPool : MonoBehaviour
         pool.RemoveAt(random);
         prefab.transform.position = Vector2.zero;
         prefab.SetActive(true);
+
+        Debug.Log($"Remove prefab {obj} from {pool}");
+
         return prefab;
     }
 
@@ -51,5 +76,7 @@ public class NormalPool : MonoBehaviour
     {
         pool.Add(obj);
         obj.SetActive(false);
+
+        Debug.Log($"Return prefab : {obj} to {pool}");
     }
 }

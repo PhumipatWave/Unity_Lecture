@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class AbillityRunner : MonoBehaviour
 {
-    
-}
+    private IAbility currentAbility;
 
-public interface IAbility
-{
-    void Use();
-}
-
-public class RageAbility : IAbility
-{
-    public void Use()
+    public void UseAbility()
     {
-        throw new System.NotImplementedException();
+        currentAbility.Use();
+    }
+
+    public void SetAbility(IAbility targetAbility)
+    {
+        currentAbility = targetAbility;
+        Debug.Log($"Change ability to {currentAbility}");
     }
 }

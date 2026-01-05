@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class NormalBullet : MonoBehaviour
 {
@@ -18,6 +17,6 @@ public class NormalBullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        
+        NormalPool.instance.ReturnPrefab(this.gameObject, NormalPool.instance.PrefabPool);
     }
 }
