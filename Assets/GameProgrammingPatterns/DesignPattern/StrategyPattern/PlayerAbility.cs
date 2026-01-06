@@ -1,35 +1,38 @@
 using UnityEngine;
 
-public class PlayerAbility : MonoBehaviour
+namespace Strategy
 {
-    [SerializeField] private AbillityRunner abillityRunner;
-
-    private void Awake()
+    public class PlayerAbility : MonoBehaviour
     {
-        abillityRunner = GetComponent<AbillityRunner>();
-        abillityRunner.SetAbility(new NormalAbility());
+        [SerializeField] private AbillityRunner abillityRunner;
 
-        Debug.Log("Num1 : Rage, Num2 : Fireball, Num3 : Heal, Space : Use ability");
-    }
+        private void Awake()
+        {
+            abillityRunner = GetComponent<AbillityRunner>();
+            abillityRunner.SetAbility(new NormalAbility());
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            abillityRunner.SetAbility(new RageAbility());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            abillityRunner.SetAbility(new FireballAbility());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            abillityRunner.SetAbility(new HealAbility());
+            Debug.Log("Num1 : Rage, Num2 : Fireball, Num3 : Heal, Space : Use ability");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Update()
         {
-            abillityRunner.UseAbility();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                abillityRunner.SetAbility(new RageAbility());
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                abillityRunner.SetAbility(new FireballAbility());
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                abillityRunner.SetAbility(new HealAbility());
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                abillityRunner.UseAbility();
+            }
         }
     }
 }

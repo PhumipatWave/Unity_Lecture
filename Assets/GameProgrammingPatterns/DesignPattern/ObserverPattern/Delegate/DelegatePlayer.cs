@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class DelegatePlayer : MonoBehaviour
 {
     void Start()
     {

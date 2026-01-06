@@ -16,7 +16,7 @@ public class DelegateMessage : MonoBehaviour
         onMessage += PrintMessage;
     }
 
-    // Normal method with the same parameter type
+    // Normal method with the same parameter type with delegate
     private void PrintMessage(string text)
     {
         Debug.Log($"Message : {text}");

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class UnityEventHealth : MonoBehaviour
 {
     [SerializeField] Image healthBar;
 
@@ -12,20 +12,6 @@ public class Health : MonoBehaviour
 
     private int minIncreaseHealth = 5;
     private int maxIncreaseHealth = 15;
-
-    // Subscribe Event Action
-    private void OnEnable()
-    {
-        Level.OnLevelUp += HealHealth;
-        Level.OnLevelUp += UpdateHealthBar;
-    }
-
-    // Unsubscribe Event Action
-    private void OnDisable()
-    {
-        Level.OnLevelUp -= HealHealth;
-        Level.OnLevelUp -= UpdateHealthBar;
-    }
 
     private void Start()
     {
@@ -46,14 +32,14 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void HealHealth()
+    public void HealHealth()
     {
         health = maxHealth;
         Debug.Log($"Heal Health : {health}");
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
-        healthBar.fillAmount = (float)health / (float)maxHealth; 
+        healthBar.fillAmount = (float)health / (float)maxHealth;
     }
 }

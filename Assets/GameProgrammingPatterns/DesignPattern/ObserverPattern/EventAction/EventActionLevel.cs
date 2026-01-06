@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Level : MonoBehaviour
+public class EventActionLevel : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI levelTxt;
     [SerializeField] TextMeshProUGUI expTxt;

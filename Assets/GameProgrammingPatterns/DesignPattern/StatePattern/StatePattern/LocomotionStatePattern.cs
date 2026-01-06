@@ -1,7 +1,10 @@
 using UnityEngine;
 
+// State pattern is Represent object state
+// "Choose what state of the object is in"
 public class LocomotionStatePattern : MonoBehaviour, ILocomotionContext
 {
+    // Combine with strategy pattern
     ILocomotionState currentState = new GroundState();
 
     public void Enter() => currentState.Enter(this);

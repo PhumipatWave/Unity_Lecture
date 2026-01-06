@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class Level2 : MonoBehaviour
+public class UnityEventLevel : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI levelTxt;
     [SerializeField] TextMeshProUGUI expTxt;
