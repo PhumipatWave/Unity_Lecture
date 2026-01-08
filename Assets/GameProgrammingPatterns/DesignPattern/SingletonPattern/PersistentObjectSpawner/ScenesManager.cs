@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class ScenesManager : MonoBehaviour
+namespace PersistenObject
 {
-    public static ScenesManager instance { get; private set; }
-
-    void Awake()
+    public class ScenesManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        public static ScenesManager instance { get; private set; }
+
+        void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void SwitchScene()
-    {
-        Debug.Log("Switch Scene");
+        public void SwitchScene()
+        {
+            Debug.Log("Switch Scene");
+        }
     }
 }

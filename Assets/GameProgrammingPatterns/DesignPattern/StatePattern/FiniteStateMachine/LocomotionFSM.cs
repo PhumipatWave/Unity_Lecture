@@ -1,67 +1,70 @@
 using UnityEngine;
 
-public class LocomotionFSM : MonoBehaviour
+namespace FiniteStateMachine
 {
-    enum State
+    public class LocomotionFSM : MonoBehaviour
     {
-        Idle,
-        Walk,
-        Jump
-    }
-
-    State currentState = State.Idle;
-
-    private void Start()
-    {
-        Debug.Log($"Control\nWalk : W, Jump : Space, Fall : F");
-    }
-
-    private void Update()
-    {
-        switch (currentState)
+        enum State
         {
-            case State.Idle:
-
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    currentState = State.Walk;
-                }
-                else if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    currentState = State.Jump;
-                }
-
-                DebugMessage();
-                break;
-
-            case State.Walk:
-
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    currentState = State.Idle;
-                }
-                else if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    currentState = State.Jump;
-                }
-
-                DebugMessage();
-                break;
-
-            case State.Jump:
-
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    currentState = State.Idle;
-                }
-
-                DebugMessage();
-                break;
+            Idle,
+            Walk,
+            Jump
         }
-    }
 
-    public void DebugMessage()
-    {
-        Debug.Log($"Current State : {currentState}");
+        State currentState = State.Idle;
+
+        private void Start()
+        {
+            Debug.Log($"Control\nWalk : W, Jump : Space, Fall : F");
+        }
+
+        private void Update()
+        {
+            switch (currentState)
+            {
+                case State.Idle:
+
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        currentState = State.Walk;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        currentState = State.Jump;
+                    }
+
+                    DebugMessage();
+                    break;
+
+                case State.Walk:
+
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        currentState = State.Idle;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        currentState = State.Jump;
+                    }
+
+                    DebugMessage();
+                    break;
+
+                case State.Jump:
+
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        currentState = State.Idle;
+                    }
+
+                    DebugMessage();
+                    break;
+            }
+        }
+
+        public void DebugMessage()
+        {
+            Debug.Log($"Current State : {currentState}");
+        }
     }
 }

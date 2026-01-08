@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Cat : MonoBehaviour
+namespace Inheritance
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Cat : Land
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            Initial("CatB");
+            Move();
+        }
     }
 }

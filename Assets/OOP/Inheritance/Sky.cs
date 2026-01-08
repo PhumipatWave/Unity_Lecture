@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class Sky : MonoBehaviour
+namespace Inheritance
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Sky : Animal
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Move()
+        {
+            Debug.Log($"{animalName} Fly");
+        }
     }
 }

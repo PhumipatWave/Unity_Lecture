@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+namespace Inheritance
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public abstract class Animal : MonoBehaviour
     {
-        
-    }
+        public string animalName;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Initial(string name)
+        {
+            animalName = name;
+        }
+
+        public virtual void Move()
+        {
+            Debug.Log($"{animalName} Default Move");
+        }
     }
 }

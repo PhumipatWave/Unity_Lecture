@@ -5,53 +5,56 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class UnityEventLevel : MonoBehaviour
+namespace UnityEvents
 {
-    [SerializeField] TextMeshProUGUI levelTxt;
-    [SerializeField] TextMeshProUGUI expTxt;
-    // Event Action variable use to subscribe the method
-    public UnityEvent OnLevelUp;
-
-    private int level = 0;
-
-    private float exp = 0f;
-    private float minIncreaseExp = .25f;
-    private float maxIncreaseExp = 5f;
-
-    private float nextLevelExp = 10f;
-
-    private void Start()
+    public class UnityEventLevel : MonoBehaviour
     {
-        StartCoroutine(IncreaseLevelRoutine());
-    }
+        [SerializeField] TextMeshProUGUI levelTxt;
+        [SerializeField] TextMeshProUGUI expTxt;
+        // Event Action variable use to subscribe the method
+        public UnityEvent OnLevelUp;
 
-    private IEnumerator IncreaseLevelRoutine()
-    {
-        while (true)
+        private int level = 0;
+
+        private float exp = 0f;
+        private float minIncreaseExp = .25f;
+        private float maxIncreaseExp = 5f;
+
+        private float nextLevelExp = 10f;
+
+        private void Start()
         {
-            exp += Random.Range(minIncreaseExp, maxIncreaseExp);
-            //Debug.Log($"Increase Exp : {exp}");
-
-            if (exp >= nextLevelExp)
-            {
-                exp -= nextLevelExp;
-                level += 1;
-
-                Debug.Log($"Level Up to {level}");
-
-                // Invoke the OnLevelUp event
-                OnLevelUp?.Invoke();
-            }
-
-            UpdateLevelText();
-
-            yield return new WaitForSeconds(3f);
+            StartCoroutine(IncreaseLevelRoutine());
         }
-    }
 
-    public void UpdateLevelText()
-    {
-        levelTxt.text = level.ToString();
-        expTxt.text = exp.ToString();
+        private IEnumerator IncreaseLevelRoutine()
+        {
+            while (true)
+            {
+                exp += Random.Range(minIncreaseExp, maxIncreaseExp);
+                //Debug.Log($"Increase Exp : {exp}");
+
+                if (exp >= nextLevelExp)
+                {
+                    exp -= nextLevelExp;
+                    level += 1;
+
+                    Debug.Log($"Level Up to {level}");
+
+                    // Invoke the OnLevelUp event
+                    OnLevelUp?.Invoke();
+                }
+
+                UpdateLevelText();
+
+                yield return new WaitForSeconds(3f);
+            }
+        }
+
+        public void UpdateLevelText()
+        {
+            levelTxt.text = level.ToString();
+            expTxt.text = exp.ToString();
+        }
     }
 }

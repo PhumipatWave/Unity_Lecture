@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+namespace PersistenObject
 {
-    public static SpawnManager instance { get; private set; }
-
-    void Awake()
+    public class SpawnManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        public static SpawnManager instance { get; private set; }
+
+        void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void RandomSpawn()
-    {
-        Debug.Log("Random Spawn");
+        public void RandomSpawn()
+        {
+            Debug.Log("Random Spawn");
+        }
     }
 }

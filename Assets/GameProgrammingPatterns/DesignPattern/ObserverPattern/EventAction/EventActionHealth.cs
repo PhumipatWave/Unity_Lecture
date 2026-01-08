@@ -3,57 +3,60 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EventActionHealth : MonoBehaviour
+namespace EventAction
 {
-    [SerializeField] Image healthBar;
-
-    private int health = 0;
-    private int maxHealth = 100;
-
-    private int minIncreaseHealth = 5;
-    private int maxIncreaseHealth = 15;
-
-    // Subscribe Event Action
-    private void OnEnable()
+    public class EventActionHealth : MonoBehaviour
     {
-        EventActionLevel.OnLevelUp += HealHealth;
-        EventActionLevel.OnLevelUp += UpdateHealthBar;
-    }
+        [SerializeField] Image healthBar;
 
-    // Unsubscribe Event Action
-    private void OnDisable()
-    {
-        EventActionLevel.OnLevelUp -= HealHealth;
-        EventActionLevel.OnLevelUp -= UpdateHealthBar;
-    }
+        private int health = 0;
+        private int maxHealth = 100;
 
-    private void Start()
-    {
-        HealHealth();
-        StartCoroutine(DecreaseHealthRoutine());
-    }
+        private int minIncreaseHealth = 5;
+        private int maxIncreaseHealth = 15;
 
-    private IEnumerator DecreaseHealthRoutine()
-    {
-        while (true)
+        // Subscribe Event Action
+        private void OnEnable()
         {
-            health -= Random.Range(minIncreaseHealth, maxIncreaseHealth);
-            Debug.Log($"Decrease Health : {health}");
-
-            UpdateHealthBar();
-
-            yield return new WaitForSeconds(1.5f);
+            EventActionLevel.OnLevelUp += HealHealth;
+            EventActionLevel.OnLevelUp += UpdateHealthBar;
         }
-    }
 
-    private void HealHealth()
-    {
-        health = maxHealth;
-        Debug.Log($"Heal Health : {health}");
-    }
+        // Unsubscribe Event Action
+        private void OnDisable()
+        {
+            EventActionLevel.OnLevelUp -= HealHealth;
+            EventActionLevel.OnLevelUp -= UpdateHealthBar;
+        }
 
-    private void UpdateHealthBar()
-    {
-        healthBar.fillAmount = (float)health / (float)maxHealth; 
+        private void Start()
+        {
+            HealHealth();
+            StartCoroutine(DecreaseHealthRoutine());
+        }
+
+        private IEnumerator DecreaseHealthRoutine()
+        {
+            while (true)
+            {
+                health -= Random.Range(minIncreaseHealth, maxIncreaseHealth);
+                Debug.Log($"Decrease Health : {health}");
+
+                UpdateHealthBar();
+
+                yield return new WaitForSeconds(1.5f);
+            }
+        }
+
+        private void HealHealth()
+        {
+            health = maxHealth;
+            Debug.Log($"Heal Health : {health}");
+        }
+
+        private void UpdateHealthBar()
+        {
+            healthBar.fillAmount = health / (float)maxHealth;
+        }
     }
 }

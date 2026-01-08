@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class AirState : ILocomotionState
+namespace State
 {
-    public void Enter(ILocomotionContext context)
+    public class AirState : ILocomotionState
     {
-        // Set logic on Enter
-        Debug.Log("Enter Air State");
-        Debug.Log($"Control\nFall : F");
-    }
-
-    public void Update(ILocomotionContext context)
-    {
-        if (Input.GetKeyDown(KeyCode.F))
+        public void Enter(ILocomotionContext context)
         {
-            context.StateTransitionTo(new GroundState());
+            // Set logic on Enter
+            Debug.Log("Enter Air State");
+            Debug.Log($"Control\nFall : F");
         }
-    }
 
-    public void Exit(ILocomotionContext context)
-    {
-        // Set logic on Exit
-        Debug.Log("Exit Air State");
+        public void Update(ILocomotionContext context)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                context.StateTransitionTo(new GroundState());
+            }
+        }
+
+        public void Exit(ILocomotionContext context)
+        {
+            // Set logic on Exit
+            Debug.Log("Exit Air State");
+        }
     }
 }

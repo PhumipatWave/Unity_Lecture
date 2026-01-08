@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DelegateEnemy : MonoBehaviour
+namespace Delegate
 {
-    void Start()
+    public class DelegateEnemy : MonoBehaviour
     {
-        DelegateMessage.onMessage("Enemy Delegate");
+        void Start()
+        {
+            DelegateMessage.onMessage("Enemy Delegate");
+        }
     }
 }

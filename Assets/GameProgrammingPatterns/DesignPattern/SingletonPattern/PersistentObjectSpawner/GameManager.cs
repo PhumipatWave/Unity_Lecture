@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace PersistenObject
 {
-    public static GameManager instance { get; private set; }
-
-    void Awake()
+    public class GameManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        public static GameManager instance { get; private set; }
+
+        void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void GameStart()
-    {
-        Debug.Log("Game Start");
+        public void GameStart()
+        {
+            Debug.Log("Game Start");
+        }
     }
 }

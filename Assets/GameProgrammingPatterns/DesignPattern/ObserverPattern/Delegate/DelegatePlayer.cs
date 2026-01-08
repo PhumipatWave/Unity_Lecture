@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
 
-public class DelegatePlayer : MonoBehaviour
+namespace Delegate
 {
-    void Start()
+    public class DelegatePlayer : MonoBehaviour
     {
-        DelegateMessage.onMessage("Player Delegate");
+        void Start()
+        {
+            DelegateMessage.onMessage("Player Delegate");
+        }
     }
 }

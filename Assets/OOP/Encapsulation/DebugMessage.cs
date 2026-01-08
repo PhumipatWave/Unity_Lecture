@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class DebugMessage : MonoBehaviour
+namespace Encapsulation
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class DebugMessage : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Player player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            player.Instaintiate(200);
+            Debug.Log($"Player health : {player.Health}");
+        }
     }
 }

@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class Land : MonoBehaviour
+namespace Inheritance
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Land : Animal
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        protected void Jump()
+        {
+            Debug.Log($"{animalName} Jump");
+        }
     }
 }

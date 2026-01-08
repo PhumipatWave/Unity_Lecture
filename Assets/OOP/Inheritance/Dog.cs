@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Dog : MonoBehaviour
+namespace Inheritance
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Dog : Land
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            Initial("DogC");
+            Move();
+        }
     }
 }

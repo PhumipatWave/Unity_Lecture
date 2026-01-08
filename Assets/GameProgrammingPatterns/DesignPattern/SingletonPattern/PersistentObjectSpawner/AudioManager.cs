@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace PersistenObject
 {
-    public static AudioManager instance { get; private set; }
-
-    void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        public static AudioManager instance { get; private set; }
+
+        void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+        public void PlaySound()
+        {
+            Debug.Log("Play Sound");
+        }
 
-    public void PlaySound()
-    {
-        Debug.Log("Play Sound");
-    }
-
-    public void StopSound()
-    {
-        Debug.Log("Stop Sound");
+        public void StopSound()
+        {
+            Debug.Log("Stop Sound");
+        }
     }
 }

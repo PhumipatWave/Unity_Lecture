@@ -1,29 +1,33 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Save for multiple of Sigleton in 1 prefab
-
-public class PersistentObjectSpwaner : MonoBehaviour
+namespace PersistenObject
 {
-    [SerializeField] GameObject persistentObjectPrefab = null;
 
-    static bool hasSpawned = false;
+    // Save for multiple of Sigleton in 1 prefab
 
-    void Awake()
+    public class PersistentObjectSpwaner : MonoBehaviour
     {
-        if (hasSpawned) return;
+        [SerializeField] GameObject persistentObjectPrefab = null;
 
-        GameObject persistentObject = Instantiate(persistentObjectPrefab);
-        DontDestroyOnLoad(persistentObject);
+        static bool hasSpawned = false;
 
-        hasSpawned = true;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        void Awake()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (hasSpawned) return;
+
+            GameObject persistentObject = Instantiate(persistentObjectPrefab);
+            DontDestroyOnLoad(persistentObject);
+
+            hasSpawned = true;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }
