@@ -7,12 +7,12 @@ namespace Polymorphism
         public int health;
         public int speed;
 
-        protected abstract void Instantiate();
+        protected abstract void Initialize();
         protected abstract void Attack<T>(T target) where T : Character;
 
         protected void Awake()
         {
-            Instantiate();
+            Initialize();
         }
 
         public virtual void TakeDamage(int damage)

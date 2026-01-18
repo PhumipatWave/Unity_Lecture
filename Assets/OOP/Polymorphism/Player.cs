@@ -11,7 +11,7 @@ namespace Polymorphism
             Attack(enemy);
         }
 
-        protected override void Instantiate()
+        protected override void Initialize()
         {
             health = 100;
             Debug.Log($"{this.name} health : {health}");

@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 namespace PersistenObject
 {
-
     // Save for multiple of Sigleton in 1 prefab
 
     public class PersistentObjectSpwaner : MonoBehaviour

@@ -9,7 +9,7 @@ namespace Liskov
     // Bad
     /*public class Bird
     {
-        public virtual void Fly() 
+        public virtual void Fly()
         {
             Debug.Log("Bird fly");
         }

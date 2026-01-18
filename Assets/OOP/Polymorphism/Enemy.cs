@@ -11,10 +11,12 @@ namespace Polymorphism
             Attack(player);
         }
 
-        protected override void Instantiate()
+        protected override void Initialize()
         {
             health = 80;
             Debug.Log($"{this.name} health : {health}");
+
+            Attack(player);
         }
 
         protected override void Attack<T>(T target)

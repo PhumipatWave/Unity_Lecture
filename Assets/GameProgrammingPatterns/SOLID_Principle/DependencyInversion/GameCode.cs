@@ -16,14 +16,19 @@ namespace Dependency
     public class DialogueA : IDialogueSystem { }
     public class DialogueB : IDialogueSystem { }
 
+    /*public class DialogueC { }
+    public class DialogueD { }*/
+
     public class GameCode : MonoBehaviour
     {
         private IDialogueSystem dialogue;
+        //private DialogueD dialogueD = new DialogueD();
+
 
         private void Awake()
         {
             // Change only the IDialogueSystem
-            dialogue = new DialogueA();
+            dialogue = new DialogueB();
         }
     }
 }
