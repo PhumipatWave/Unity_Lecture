@@ -6,6 +6,7 @@ namespace Records
 {
     public class Records : MonoBehaviour
     {
+        #region Example1
         private void Start()
         {
             // record : can only set in initialize
@@ -16,10 +17,11 @@ namespace Records
             // Create the new object override from the base
             Person person2 = person with { LastName = "Yo" };
 
-            Debug.Log(person);
-            Debug.Log(person2);
+            // record : can use for compare the data. but the normal class is reference type can't compare the data
+            Debug.Log(person == person2);
         }
 
+        // record : group the data into a type
         public record Person(string FirstName, string LastName);
         /*{
             // Techicle to change value in record but avoid to use this!
@@ -28,8 +30,15 @@ namespace Records
 
         public class PersonClass
         {
-            public string FirstName {  get; init; }
+            // init : initialize, can't change the data (Immutable)
+            public string FirstName { get; init; }
             public string LastName { get; init; }
         }
+        #endregion
+
+        #region Example2
+        public record Unit(float Speed);
+        public record Player(string PlayerName, float Speed) : Unit(Speed);
+        #endregion
     }
 }
