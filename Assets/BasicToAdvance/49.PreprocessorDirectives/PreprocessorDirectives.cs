@@ -2,10 +2,15 @@
 // It just symbol either exist or don't exits not hold any data
 #define TESTING
 
+// Use for disable warning with specific code
+//#pragma warning disable 0168
+
 using UnityEngine;
 
 public class PreprocessorDirectives : MonoBehaviour
 {
+    // #region : use for code folding
+    #region TestRegion
     private void Start()
     {
 #if TESTING
@@ -28,7 +33,18 @@ public class PreprocessorDirectives : MonoBehaviour
 #elif RELEASE
         Debug.Log("RELEASE");
 #endif
+        #endregion
+
+
+#if !DEBUG
+#warning This is warning not in debug mode
+#error This is error not in debug mode
+#endif
+
+        // Can use pragma to disable specific warning
+#pragma warning disable
+        int i;
+#pragma warning restore
+        int j;
     }
-
-
 }
